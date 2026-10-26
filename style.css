@@ -1,0 +1,73 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+  background-color: white;
+  padding-top: 25vh;
+}
+
+.page {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin: 20px;
+}
+
+.links a {
+  color: #2370cf;
+  margin-right: 15px;
+  text-decoration: none;
+}
+
+.links a:hover {
+  text-decoration: underline;
+}
+
+.intro,
+.camera-box {
+  border: 2px solid #222222;
+  border-radius: 10px;
+  padding: 20px;
+  width: 450px;
+  min-height: 187px;
+}
+
+.intro {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+h2 {
+  font-size: 16px;
+  letter-spacing: 2px;
+  color: #2370cf;
+  margin: 0 0 10px 0;
+  text-transform: uppercase;
+  margin-top: -15px;
+}
+
+img {
+  width: 175px;
+  height: 175px;
+  border-radius: 50%;
+  background-color: #cccccc;
+}
+
+.fact {
+  display: none;
+  font-size: 15px;
+}
+
+#camera {
+  font-size: 92px;
+  margin-top: -40px;
+}
+
+#shutter {
+  font-size: 15px;
+  padding: 5px 10px;
+  margin-top: 10px;
+  cursor: pointer;
+}
