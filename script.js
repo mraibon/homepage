@@ -157,6 +157,11 @@ button.addEventListener("click", () => {
     startPhotoTrail(imageIndex);
 
     // Reveal the next fact.
+    facts.forEach((fact) => {
+      fact.style.display = "none";
+    });
+
+    // Reveal only the current fact.
     const currentFact = facts[shown];
     currentFact.style.display = "block";
 
