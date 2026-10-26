@@ -1,14 +1,27 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Michael | Data Analyst</title>
     <link rel="stylesheet" href="style.css" />
   </head>
 
   <body>
+    <header class="banner">
+      <div class="initials">MR</div>
+      <nav class="menu">
+        <a href="index.html">HOME</a>
+        <a href="projects.html">PROJECTS</a>
+        <a href="other.html">OTHER</a>
+      </nav>
+    </header>
+    <div id="background" aria-hidden="true"></div>
+    <div id="moving-background" aria-hidden="true"></div>
+    <div id="flash" aria-hidden="true"></div>
     <div class="page">
       <div class="intro">
-        <img src="me.jpeg" alt="Photo of me" />
+        <img class="profile-photo" src="me.jpeg" alt="Photo of me" />
         <div>
           <h1>Michael Raibon</h1>
           <h2>Data Analyst</h2>
@@ -42,17 +55,37 @@
 
       <div class="camera-box">
         <p>Please press the shutter to learn more about me.</p>
-        <div id="camera">📷</div>
+        <div id="camera">&#128247;</div>
         <button id="shutter">Shutter</button>
 
-        <p class="fact">I live in Houston, Texas.</p>
-        <p class="fact">I love photography.</p>
-        <p class="fact">I love horror movies.</p>
-        <p class="fact">I love Italian food.</p>
-        <p class="fact">That's all you need to know!</p>
+        <p
+          class="fact"
+          data-images="images/houston1.jpg, images/houston2.jpg, images/houston3.jpg, images/houston4.jpg, images/houston5.jpg, images/houston6.jpg"
+        >
+          I live in <strong>Houston, Texas</strong>. (Best city in the world!)
+        </p>
+        <p
+          class="fact"
+          data-images="images/photography1.jpg, images/photography2.jpg, images/photography3.jpg, images/photography4.jpg, images/photography5.jpg, images/photography6.jpg"
+        >
+          I love <strong>photography</strong>. (My photos below!)
+        </p>
+        <p
+          class="fact"
+          data-images="images/horror1.jpg, images/horror2.jpg, images/horror3.jpg, images/horror4.jpg, images/horror5.jpg, images/horror6.jpg"
+        >
+          I love <strong>horror movies</strong>. (These are my favorites!)
+        </p>
+        <p
+          class="fact"
+          data-images="images/food1.jpg, images/food2.jpg, images/food3.jpg, images/food4.jpg, images/food5.jpg, images/food6.jpg"
+        >
+          I love <strong>food</strong>. (All delicious!)
+        </p>
+        <p class="fact">That's all you need to know! &#128522;</p>
       </div>
     </div>
 
-    <script src="script.js"></script>
+    <escape><script src="script.js"></script></escape>
   </body>
 </html>

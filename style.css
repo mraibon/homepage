@@ -1,17 +1,112 @@
+/* 
+helpful reminders for me:
+.banner = select element by class
+#flash = select element by ID
+.menu a = selects links ('a' elements) inside an element with class menu
+.menu a:hover = applies stypes when you hover over link
+@media @keyframes = responsive layouts and animations
+display: flex = flexible layout
+justify-content: pushes first child to left, last child to right (distributes space between them)
+padding: 15px 30px = 15px above and below, 30px left and right
+border-radius: 50% = rounded corners (makes it a circle)
+justify-content (in initials): horizontally centers the initials
+.menu a = targets links inside the menu
+.menu a + a = targets after each part of the banner (HOME | PROJECTS | OTHER) 
+font-family: Arial, Helvetica, sans-serif = use Arial; if not available, use Helvetica, etc.
+background-image = tiny green dots
+   
+*/
+
+.banner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  padding: 15px 30px;
+}
+
+.initials {
+  width: 60px;
+  height: 60px;
+  border: 3px solid black;
+  border-radius: 50%;
+  color: black;
+  font-size: 24px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.menu a {
+  color: black;
+  text-decoration: none;
+  font-size: 14px;
+  letter-spacing: 2px;
+  padding: 0 15px;
+}
+
+.menu a + a {
+  border-left: 1px solid black;
+}
+
+.menu a:hover {
+  color: #ff8a4c;
+}
+
 body {
   font-family: Arial, Helvetica, sans-serif;
   text-align: center;
-  background-color: white;
-  padding-top: 25vh;
+  background-color: #faf8f5;
+  background-image: radial-gradient(#577d00, 1px, transparent 2px);
+  background-size: 24px 24px;
+}
+
+/* Profile photo */
+img {
+  width: 175px;
+  height: 175px;
+  border-radius: 50%;
+  background-color: #cccccc;
+}
+
+h2 {
+  font-size: 16px;
+  letter-spacing: 2px;
+  color: #2370cf;
+  margin: 0 0 10px 0;
+  text-transform: uppercase;
+  margin-top: -15px;
 }
 
 .page {
+  position: relative;
+  z-index: 2; /* stacking level so can appear above lower-layer backgrounds */
   display: flex;
   justify-content: center;
   align-items: flex-start;
   flex-wrap: wrap;
   gap: 20px;
-  margin: 20px;
+  margin: 25vh 20px 100px; /* can move the intro and camera boxes higher; vh = viewport height; 100vh = full height */
+  /* 25 = 25% viewport height above page content, 20px on sides, 100px below */
+}
+
+.intro,
+.camera-box {
+  width: min(100%, 490px); /* chooses whichever is smaller */
+  min-width: 0;
+  min-height: 187px;
+  padding: 20px;
+  background-color: #faf8f5;
+  border: 2px solid #222222;
+  border-radius: 10px;
+}
+
+.intro {
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }
 
 .links a {
@@ -24,36 +119,7 @@ body {
   text-decoration: underline;
 }
 
-.intro,
-.camera-box {
-  border: 2px solid #222222;
-  border-radius: 10px;
-  padding: 20px;
-  width: 450px;
-  min-height: 187px;
-}
-
-.intro {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-
-h2 {
-  font-size: 16px;
-  letter-spacing: 2px;
-  color: #2370cf;
-  margin: 0 0 10px 0;
-  text-transform: uppercase;
-  margin-top: -15px;
-}
-
-img {
-  width: 175px;
-  height: 175px;
-  border-radius: 50%;
-  background-color: #cccccc;
-}
+/* camera and shutter button */
 
 .fact {
   display: none;
@@ -70,4 +136,138 @@ img {
   padding: 5px 10px;
   margin-top: 10px;
   cursor: pointer;
+}
+
+/* camera flash */
+
+#flash {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 100;
+}
+
+#flash.flashing {
+  animation: flash-fade 1s ease-out;
+}
+
+@keyframes flash-fade {
+  0% {
+    opacity: 1;
+  }
+
+  30% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+/* photo collage for each fact */
+
+#background {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+#background img {
+  position: absolute;
+  width: 260px;
+  height: 180px;
+  box-sizing: content-box;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 6px solid white;
+  box-shadow: 0 4px 12px #00000066;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+
+/* photo trail */
+
+#moving-background {
+  position: fixed;
+  inset: 0; /* this with position: fixed means that it creates full-screen overlays/backgrounds */
+  z-index: 1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+#moving-background img {
+  position: absolute;
+  left: 0;
+  top: var(--start-y);
+
+  width: clamp(100px, 15vw, 210px); /* responsive width */
+  height: clamp(75px, 12vw, 155px);
+
+  object-fit: cover;
+  box-sizing: border-box;
+
+  border: 5px solid white;
+  border-radius: 4px;
+  box-shadow: 0 4px 12px #00000059;
+
+  opacity: 0;
+
+  /* Each photo travels across the screen only once */
+  /* photo-trail = name, var(--duration) = define linear = animation speed is constant, 1 = runs it once, forwards = keeps the final keyframe's style after animation ends */
+  animation: photo-trail var(--duration) linear 1 forwards;
+}
+
+@keyframes photo-trail {
+  0% {
+    transform: translateX(-250px) rotate(var(--tilt));
+    opacity: 0;
+  }
+
+  15% {
+    opacity: 0.25;
+  }
+
+  85% {
+    opacity: 0.25;
+  }
+
+  100% {
+    transform: translateX(calc(100vw + 250px)) rotate(var(--tilt));
+    opacity: 0;
+  }
+}
+
+/* responsive layout */
+
+@media (max-width: 800px) {
+  #background {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: repeat(3, minmax(120px, 1fr));
+  }
+}
+
+@media (max-width: 520px) {
+  .banner {
+    padding: 12px;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .intro {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  #background img {
+    width: 180px;
+    height: 130px;
+  }
 }
